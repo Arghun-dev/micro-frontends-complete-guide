@@ -15,4 +15,4 @@
 
 Imagine we have `product list` and `cart list` components and we have decided to make each module as a single MFE of a micro-frontend application, like image below: But as you can see from image below, for haveing different MFEs in one monorepo we need to have one additional MFE called `container` or `shell` to combine and integrate different MFEs.
  
-<img width="1720" alt="Screenshot 2024-08-17 at 14 06 32" src="https://github.com/user-attachments/assets/29393e35-a462-4a41-ba60-61a2fbab27f9">
+<img width="1720" alt="Screenshot 2024-08-17 at 14 11 08" src="https://github.com/user-attachments/assets/8306a027-b5a6-4bfb-a4de-aec71bd56a58">
