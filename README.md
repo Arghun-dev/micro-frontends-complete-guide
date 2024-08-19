@@ -50,3 +50,14 @@ Integration types:
 3. ProducsList code deployed at https://my-app.com/productslist.js
 4. User navigates to my-app.com, Container app is loaded
 5. Container app fetches productslist.js and executes it
+
+**Pros**
+1. ProductsList can be deployed independently at any time
+2. Different versions of ProductsList can be deployed and Container can decide which one to use
+
+**Cons**
+1. Tooling + setup is far more complicated
+
+
+In this course we will focus on `Run-Time` integration using `Webpack Module Federation`
+
