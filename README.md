@@ -25,6 +25,12 @@ This process of combining MFEs is called `integration`.
 
 How and when does the container get access to the source code in MFEs.
 
+Integration types:
+
+1. Build-Time integration
+2. Run-Time integration
+3. Server integration
+
 <img width="1720" alt="Screenshot 2024-08-17 at 16 34 22" src="https://github.com/user-attachments/assets/d0eedc8a-116e-457a-81ae-5795bc827c60">
 
 <img width="1720" alt="Screenshot 2024-08-17 at 16 37 00" src="https://github.com/user-attachments/assets/86dbf01b-8980-4401-a6d3-2478cd898442">
