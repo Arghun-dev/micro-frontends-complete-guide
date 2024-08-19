@@ -41,3 +41,12 @@ Integration types:
 <img width="1720" alt="Screenshot 2024-08-17 at 16 47 21" src="https://github.com/user-attachments/assets/b814a6ce-32d8-4e6c-aa1a-3e04fd776a4d">
 
 <img width="1720" alt="Screenshot 2024-08-17 at 16 53 54" src="https://github.com/user-attachments/assets/f438d7b8-8433-45f5-b438-818873500bf9">
+
+
+## Run-Time Integration
+
+1. Engineering team develops ProductsList
+2. Time to deploy!
+3. ProducsList code deployed at https://my-app.com/productslist.js
+4. User navigates to my-app.com, Container app is loaded
+5. Container app fetches productslist.js and executes it
