@@ -224,3 +224,14 @@ module.exports = {
 ```
 
 with adding `shared` config to your webpack module federation you will solve loading duplicate packages.
+
+but when we add shared package we hit an issue, if you run for example products MFE standalone, you will get this error:
+
+`Uncaught Error: Shared module is not available for eager consumption`
+
+That's not an issue if you run the app through container, but if you run the products app standalone you will get this error.
+
+The reason: when you load up products in isolation, the first file that really gets executed is our src/index.js file and inside of it we have code that says
+`import faker from 'faker';` => get access to faker right away, Like we instantaneously want Faker available inside this file because we're gonna use it.
+
+Unfortunately when we mark faker as a shared module that causes it to be loaded up by default `asynchronously` So when we load up our index.js file we do not yet have faker available. And this is not an issue when we load up products through container, we are first loading up the remote entry file for products and a remote entry file has some code and configuration inside of it that says Hey we need to get access to index.js and to run that file we need Faker. So when we load up our application therough remote entry we don't run into any issue, because webpack can very easily have the time and say "Hey, we need to get both index.js and Faker modile" but when we load up products by itself we're getting index.js right away and end up with the error.
