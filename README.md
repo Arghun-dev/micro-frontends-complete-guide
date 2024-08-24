@@ -155,3 +155,4 @@ and then run `npm start` => it will run `webpack serve` and then if you open up 
 ![Uploading WhatsApp Image 2024-08-24 at 17.52.45.jpeg…]()
 
 
+Team 1 and 2 can develop their entire application in isolation, in other words team number 1 can develop products by itself and they don't have to care about what any other team is doing. They can have their own dependencies, their own tooling, only requirement is that they make use of Webpack and they make use of the Module Federation plugin, that's pretty much it. only container team should make sure all sub projects and MFEs are running so they have to run npm start for all MFEs, so they need to run npm start inside of cart, products and container apps.
