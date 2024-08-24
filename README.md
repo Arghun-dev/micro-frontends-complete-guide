@@ -69,6 +69,79 @@ Container -> src | public | package.json | webpack.config.js
 Cart -> src | public | package.json | webpack.config.js
 Products -> src | public | package.json | webpack.config.js
 
+
 1. Products (MFE) will be build as a JS app with no framework
 2. We have to be able to run it in isolation (on its own)
 3. We have to be able to run it through the 'container' app
+
+
+## Dependencies we use
+
+1.  `webpack` this package combines all different js files and generates one single `bundle.js` or `main.js` file.
+2.  `webpack-dev-server` => we now that have our main.js file created, but with just creating it doesn't really do us a whole lot. We now want to somehow take this file and execute it inside the browser, and make sure that eventually the code inside of here generate some HTML that gets displayed on the screen. So we need to load up main.js into the browser. `webpack-dev-server` makes output easily available to the browser.
+
+
+webpack.config.js
+
+```js
+module.exports = {
+  mode: "development",
+  devServer: {
+    port: 8081, // this will run the app in port 8081 - after you build the app you can get access the app in localhost:8081/main.js
+  },
+};
+```
+
+package.json
+
+```js
+{
+  "name": "products",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve" // this command will create main.js and serve it into the browser
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "faker": "5.1.0",
+    "html-webpack-plugin": "5.5.0",
+    "webpack": "5.88.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.7.4"
+  }
+}
+```
+
+with the above config you can get accesss main.js file in localhost:8081/main.js
+
+But, we actually want to load an html inside the browser that's gonna have script tag that tries to load up main.js file.
+
+like => <script src="main.js"></script> => we could definitelly add that manually.
+
+But very quickly you will notice that the files coming out of webpack do not have predictable names and webpack can return you couple of js files with dynamic names like: `1k4j43.bundle.js`, `46j3ss.bundle.js` and ... that are absolutely unpredictable.
+
+So, we're going to make use of a little plugin called `html-webpack-plugin` => this plugin is gonna take a look at different files that are coming out of webpack, it's gonna take a look at those file names and then automatically update that HTML document with adding those js files as script tags.
+
+so we will update the webpack.config.js as below:
+
+```js
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+  mode: "development",
+  devServer: {
+    port: 8081,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
+};
+```
+
+and then run `npm start` => it will run `webpack serve` and then if you open up the app in the browswer and check the console, you will see the products has been logged into the console.
