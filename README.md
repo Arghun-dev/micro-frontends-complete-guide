@@ -147,3 +147,5 @@ module.exports = {
 and then run `npm start` => it will run `webpack serve` and then if you open up the app in the browswer and check the console, you will see the products has been logged into the console.
 
 ![WhatsApp Image 2024-08-24 at 15 23 48](https://github.com/user-attachments/assets/5cf47b78-5df6-4e77-8fec-aea0ac6bcba1)
+![WhatsApp Image 2024-08-24 at 15 30 09](https://github.com/user-attachments/assets/dd1802a6-2020-4479-b4b1-9a99448c9055)
+
