@@ -61,3 +61,14 @@ Integration types:
 
 In this course we will focus on `Run-Time` integration using `Webpack Module Federation`
 
+
+
+## Project Structure
+
+Container -> src | public | package.json | webpack.config.js
+Cart -> src | public | package.json | webpack.config.js
+Products -> src | public | package.json | webpack.config.js
+
+1. Products (MFE) will be build as a JS app with no framework
+2. We have to be able to run it in isolation (on its own)
+3. We have to be able to run it through the 'container' app
