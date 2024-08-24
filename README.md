@@ -159,3 +159,9 @@ Team 1 and 2 can develop their entire application in isolation, in other words t
 
 ![WhatsApp Image 2024-08-24 at 18 02 18](https://github.com/user-attachments/assets/e48ac3a1-6d72-4e60-af50-6dc4dbe82e1f)
 
+
+## Sharing dependencies
+
+as you see both cart and products MFEs are using faker.js module, in the current solution the container will load faker module twice since it's being installed in two MFEs.
+![WhatsApp Image 2024-08-24 at 18 08 24](https://github.com/user-attachments/assets/474d1fb0-09f1-44b9-bc97-58915c012107)
+
