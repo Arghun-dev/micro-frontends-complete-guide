@@ -253,3 +253,14 @@ import('./bootstrap');
 ```
 
 And this will solve the issue.
+
+
+## Shared Module Versioning
+
+Remember different MFEs are going to be developed by different engineering teams and they could decide to use different versions of the shared dependencies.
+
+so what will happen if they use different versions?
+
+in that case whe we run the app again we will load two separate versions of faker dependency which basically we have the same issue of loading duplicate dependencies again. This is actually desireable, this is what we want to have happen.
+
+So, Module Federation plugin is gonna take a look at the versions of these different modules that you specify inside of your package.json file.
