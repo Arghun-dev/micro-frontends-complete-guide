@@ -162,6 +162,65 @@ Team 1 and 2 can develop their entire application in isolation, in other words t
 
 ## Sharing dependencies
 
-as you see both cart and products MFEs are using faker.js module, in the current solution the container will load faker module twice since it's being installed in two MFEs.
+as you see both cart and products MFEs are using faker.js module, in the current solution the container will load faker module twice since it's being installed in two MFEs. which is not good at all
 ![WhatsApp Image 2024-08-24 at 18 08 24](https://github.com/user-attachments/assets/474d1fb0-09f1-44b9-bc97-58915c012107)
 
+
+To solve this problem we need to add remote MFEs not Host MFE the shared config to Module Federation.
+
+cart webpack:
+
+```js
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+
+module.exports = {
+  mode: "development",
+  devServer: {
+    port: 8082,
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "cart",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./CartIndex": "./src/index.js",
+      },
+      shared: ['faker'] // you need to add this line
+    }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
+};
+
+```
+
+products webpack:
+
+```js
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+
+module.exports = {
+  mode: "development",
+  devServer: {
+    port: 8081,
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "products",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./ProductsIndex": "./src/index",
+      },
+      shared: ['faker'] // you need to add this line
+    }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
+};
+```
+
+with adding `shared` config to your webpack module federation you will solve loading duplicate packages.
